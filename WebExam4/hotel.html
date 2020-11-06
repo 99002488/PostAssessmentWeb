@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotels</title>
+<script src="https://code.jquery.com/jquery-2.2.3.min.js">
+
+$(document).ready(function()
+{​​​​​​​​
+    $('#showhotels').click(function()
+{​​​​​​​​
+    var url='http://localhost:3000/showHotels';
+$.get(url, function(data,status)
+{​​​​​​​​
+    data.forEach(book=>{​​​​​​​​
+    var str='';
+    for(const prop in book)
+{​​​​​​​​
+    str+=prop+''+book[prop]+''+'<br>';
+}​​​​​​​​
+$('#mydiv').append(str).append('<br>');
+}​​​​​​​​);
+}​​​​​​​​)
+}​​​​​​​​);
+$('#showhotelbycity').click(function()
+{​​​​​​​​
+var url='http://localhost:3000/showHotelsByCity';
+var authchoice=$('#author').val();
+$.get(url,{​​​​​​​​author:authchoice}​​​​​​​​,function(data,status)
+{​​​​​​​​
+data.forEach(book=>{​​​​​​​​
+varstr='';
+for(const prop in book)
+{​​​​​​​​
+str+=prop+''+book[prop]+''+'<br>';
+}​​​​​​​​
+$('#mydiv').append(str).append('<br>');
+}​​​​​​​​)
+}​​​​​​​​);
+}​​​​​​​​);
+}​​​​​​​​)
+</script>
+</head>
+<body>
+<button id="showhotels">Show Hotels</button><br>
+<input type="text" id="city">
+<button id="showhotelbycity">Search By City</button><br>
+<div id="mydiv"></div>
+</body>
+</html>
+
